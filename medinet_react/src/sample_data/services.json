@@ -1,0 +1,272 @@
+[
+    {
+      "id": 1,
+      "name": "City Hospital",
+      "image": "https://cdn.pixabay.com/photo/2015/05/15/05/31/night-view-767852_640.jpg",
+      "description": "Description of City Hospital",
+      "services": [
+        {
+          "name": "Full Body Checkup",
+          "price": 3000,
+          "description": "Comprehensive health assessment"
+        },
+        {
+          "name": "Cardiac Health Screening",
+          "price": 2500,
+          "description": "Specialized heart health evaluation"
+        }
+      ],
+      "type": "hospital"
+    },
+    {
+      "id": 2,
+      "name": "Metro Hospital",
+      "image": "https://cdn.pixabay.com/photo/2021/02/03/23/09/operating-room-5979687_640.jpg",
+      "description": "Description of Metro Hospital",
+      "services": [
+        {
+          "name": "MRI Scan",
+          "price": 3500,
+          "description": "Magnetic Resonance Imaging"
+        },
+        {
+          "name": "X-Ray",
+          "price": 2700,
+          "description": "Diagnostic imaging technique"
+        }
+      ],
+      "type": "hospital"
+    },
+    {
+      "id": 3,
+      "name": "Dr. Smith",
+      "image": "https://cdn.pixabay.com/photo/2014/11/21/14/03/operation-540597_640.jpg",
+      "description": "Description of Dr. Smith",
+      "services": "Cardiologist",
+      "type": "practitioner"
+    },
+    {
+      "id": 4,
+      "name": "Dr. Johnson",
+      "image": "https://cdn.pixabay.com/photo/2022/03/12/03/54/doctor-7063308_640.jpg",
+      "description": "Description of Dr. Johnson",
+      "services": "Dermatologist",
+      "type": "practitioner"
+    },
+    {
+      "id": 5,
+      "name": "Dr. Lee",
+      "image": "https://cdn.pixabay.com/photo/2024/03/30/01/07/woman-8663875_640.png",
+      "description": "Description of Dr. Lee",
+      "services": "Pediatrician",
+      "type": "practitioner"
+    },
+    {
+      "id": 6,
+      "name": "Sunrise Hospital",
+      "image": "https://cdn.pixabay.com/photo/2015/08/26/12/37/hospital-908436_640.png",
+      "description": "Description of Sunrise Hospital",
+      "services": [
+        {
+          "name": "Blood Test",
+          "price": 2000,
+          "description": "Routine blood analysis"
+        },
+        {
+          "name": "Ultrasound",
+          "price": 2800,
+          "description": "Diagnostic imaging technique"
+        }
+      ],
+      "type": "hospital"
+    },
+    {
+      "id": 7,
+      "name": "Dr. Williams",
+      "image": "https://cdn.pixabay.com/photo/2021/11/20/03/16/doctor-6810750_640.png",
+      "description": "Description of Dr. Williams",
+      "services": "Oncologist",
+      "type": "practitioner"
+    },
+    {
+      "id": 8,
+      "name": "Oceanview Hospital",
+      "image": "https://cdn.pixabay.com/photo/2017/11/05/21/14/clinic-2921858_640.jpg",
+      "description": "Description of Oceanview Hospital",
+      "services": [
+        {
+          "name": "CT Scan",
+          "price": 4000,
+          "description": "Computed Tomography Imaging"
+        },
+        {
+          "name": "Endoscopy",
+          "price": 3200,
+          "description": "Internal examination of organs"
+        }
+      ],
+      "type": "hospital"
+    },
+    {
+      "id": 9,
+      "name": "Dr. Brown",
+      "image": "https://cdn.pixabay.com/photo/2021/11/20/03/35/doctor-6810776_640.png",
+      "description": "Description of Dr. Brown",
+      "services": "Orthopedic Surgeon",
+      "type": "practitioner"
+    },
+    {
+      "id": 10,
+      "name": "Central Hospital",
+      "image": "https://cdn.pixabay.com/photo/2020/08/03/09/39/medical-5459630_640.png",
+      "description": "Description of Central Hospital",
+      "services": [
+        {
+          "name": "Emergency Care",
+          "price": 5000,
+          "description": "Immediate medical treatment"
+        },
+        {
+          "name": "Laboratory Tests",
+          "price": 2700,
+          "description": "Diagnostic procedures"
+        }
+      ],
+      "type": "hospital"
+    },
+    {
+      "id": 11,
+      "name": "Dr. Miller",
+      "image": "https://cdn.pixabay.com/photo/2013/02/09/04/19/surgery-79584_640.jpg",
+      "description": "Description of Dr. Miller",
+      "services": "Gynecologist",
+      "type": "practitioner"
+    },
+    {
+      "id": 12,
+      "name": "Grace Hospital",
+      "image": "https://cdn.pixabay.com/photo/2020/01/28/11/15/insulation-station-4799475_640.jpg",
+      "description": "Description of Grace Hospital",
+      "services": [
+        {
+          "name": "Maternity Care",
+          "price": 4500,
+          "description": "Prenatal and postnatal care"
+        },
+        {
+          "name": "Surgery",
+          "price": 6000,
+          "description": "Medical procedures"
+        }
+      ],
+      "type": "hospital"
+    },
+    {
+      "id": 13,
+      "name": "Dr. Anderson",
+      "image": "https://cdn.pixabay.com/photo/2017/03/14/03/20/woman-2141808_640.jpg",
+      "description": "Description of Dr. Anderson",
+      "services": "Neurologist",
+      "type": "practitioner"
+    },
+    {
+      "id": 14,
+      "name": "Greenwood Hospital",
+      "image": "https://cdn.pixabay.com/photo/2014/12/03/06/13/operation-theatre-555088_640.jpg",
+      "description": "Description of Greenwood Hospital",
+      "services": [
+        {
+          "name": "Physical Therapy",
+          "price": 3500,
+          "description": "Rehabilitation services"
+        },
+        {
+          "name": "Psychiatric Consultation",
+          "price": 2800,
+          "description": "Mental health evaluation"
+        }
+      ],
+      "type": "hospital"
+    },
+    {
+      "id": 15,
+      "name": "Dr. Martinez",
+      "image": "https://cdn.pixabay.com/photo/2019/04/03/03/06/medical-equipment-4099429_640.jpg",
+      "description": "Description of Dr. Martinez",
+      "services": "Psychiatrist",
+      "type": "practitioner"
+    },
+    {
+      "id": 16,
+      "name": "Pioneer Hospital",
+      "image": "https://cdn.pixabay.com/photo/2015/10/21/11/53/house-999476_640.jpg",
+      "description": "Description of Pioneer Hospital",
+      "services": [
+        {
+          "name": "Radiology",
+          "price": 3800,
+          "description": "Medical imaging services"
+        },
+        {
+          "name": "Surgical Procedures",
+          "price": 5500,
+          "description": "Operative interventions"
+        }
+      ],
+      "type": "hospital"
+    },
+    {
+      "id": 17,
+      "name": "Dr. Taylor",
+      "image": "https://cdn.pixabay.com/photo/2023/12/15/18/40/ai-generated-8451277_640.png",
+      "description": "Description of Dr. Taylor",
+      "services": "ENT Specialist",
+      "type": "practitioner"
+    },
+    {
+      "id": 18,
+      "name": "Sunset Hospital",
+      "image": "https://cdn.pixabay.com/photo/2018/01/22/11/02/hospital-3098683_640.jpg",
+      "description": "Description of Sunset Hospital",
+      "services": [
+        {
+          "name": "Pediatric Care",
+          "price": 3800,
+          "description": "Medical care for children"
+        },
+        {
+          "name": "Emergency Surgery",
+          "price": 6000,
+          "description": "Urgent surgical procedures"
+        }
+      ],
+      "type": "hospital"
+    },
+    {
+      "id": 19,
+      "name": "Dr. Garcia",
+      "image": "https://cdn.pixabay.com/photo/2024/04/14/03/21/doctor-8694738_640.jpg",
+      "description": "Description of Dr. Garcia",
+      "services": "Ophthalmologist",
+      "type": "practitioner"
+    },
+    {
+      "id": 20,
+      "name": "Harborview Hospital",
+      "image": "https://cdn.pixabay.com/photo/2016/11/06/10/35/hospital-1802680_640.jpg",
+      "description": "Description of Harborview Hospital",
+      "services": [
+        {
+          "name": "Emergency Care",
+          "price": 5000,
+          "description": "Immediate medical treatment"
+        },
+        {
+          "name": "Laboratory Tests",
+          "price": 2700,
+          "description": "Diagnostic procedures"
+        }
+      ],
+      "type": "hospital"
+    }
+  ]

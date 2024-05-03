@@ -1,0 +1,13 @@
+ul, ol {
+    list-style: none;
+    padding: none;
+    margin: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.text-align-left {
+    text-align: left;
+}
