@@ -12,6 +12,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from django.contrib.auth import authenticate
 from django.shortcuts import get_object_or_404
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 
 
@@ -22,6 +23,9 @@ class Home(APIView):
     def get(self, request):
         content = {'message': 'Hello, World!'}
         return Response(content)
+    
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
     
 @api_view(['GET','POST'])
 def appointments_view(request):
@@ -274,3 +278,5 @@ def login(request):
         if user:
             return Response({'message': 'Login successful'}, status=status.HTTP_200_OK)
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+    
+

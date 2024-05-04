@@ -11,25 +11,29 @@ import ServiceDetails from './pages/ServiceDetails';
 import CreateAppointment from './pages/CreateAppointment';
 import MyAccount from './pages/MyAccount';
 import Login from './pages/Login';
+import PrivateRoute from './utils/PrivateRoute';
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
   return (
     <BrowserRouter>
-      <div className='App'>
-        <MyNavbar />
-        <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='/login' element={ <Login />} />
-          <Route path='/my-account' element={ <MyAccount />} />
-          <Route path='/practitioners/:id' element={<DoctorDetails /> } />
-          <Route path='/services/:id' element={<ServiceDetails />} />
-          <Route path='/services/:bookingId/book' element={<CreateAppointment />} />
-          <Route path='update-details' element={<UpdateDetails /> } />
-          <Route path='/practitioner/:bookingId/book' element={<CreateAppointment />} />
-          <Route path='/services' element={< Services />} />
-          <Route path='/about' element={< About />} />
-        </Routes>
-      </div>
+      <AuthProvider>
+        <div className='App'>
+          <MyNavbar />
+          <Routes>
+            <Route path='/' element={<PrivateRoute><HomePage /></PrivateRoute>} />
+            <Route path='/login' element={ <Login />} />
+            <Route path='/my-account' element={ <MyAccount />} />
+            <Route path='/practitioners/:id' element={<DoctorDetails /> } />
+            <Route path='/services/:id' element={<ServiceDetails />} />
+            <Route path='/services/:bookingId/book' element={<CreateAppointment />} />
+            <Route path='update-details' element={<UpdateDetails /> } />
+            <Route path='/practitioner/:bookingId/book' element={<CreateAppointment />} />
+            <Route path='/services' element={< Services />} />
+            <Route path='/about' element={< About />} />
+          </Routes>
+        </div>
+      </AuthProvider>
     </BrowserRouter>
   );
 }
