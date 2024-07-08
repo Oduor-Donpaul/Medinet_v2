@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
-import axios from 'axios'
+import axios from 'axios';
+import { useAuth } from "../context/AuthContext";
 
 const CreateAppointmentForm = ({defaulPractitioner, defaultService}) => {
     const [ serviceData, setServiceData ] = useState({});
     let { bookingId } = useParams();
+    const { authTokens, user } = useAuth();
 
     console.log("booking Id:", bookingId);
     useEffect(() => {
@@ -16,19 +18,20 @@ const CreateAppointmentForm = ({defaulPractitioner, defaultService}) => {
                     mode: 'cors',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Accept': 'application/json'
+                        'Accept': 'application/json',
+                        'Authorization': `Bearer ${authTokens.access}`,
                     }
                 })
                 if (!response.ok){
                     throw new Error("Network error")
                 }
                 const data = await response.json();
-                console.log("booking id data:", data)
+                console.log("booking data:", data)
                 setServiceData(data);
 
                 setFormData(prevFormData => ({
                     ...prevFormData,
-                    practitioner: data.practitioner || '',
+                    practitioner: data.Practitioner.username ,
                     service: data.name || ''
                 }))
             } catch (error){
@@ -38,14 +41,25 @@ const CreateAppointmentForm = ({defaulPractitioner, defaultService}) => {
         fetchData();
     }, [bookingId])
 
+    const currentDateandTime = () => {
+        const now = new Date();
+        return{
+            date: now.toISOString().split('T')[0], //YYYY-MM-DD format
+            time: now.toTimeString().split('')[0].slice(0, 5), //HH:MM:SS format
+        }
+    }
+
     console.log("service data:", serviceData)
 
+    const { date, time } = currentDateandTime();
+
     const [formData, setFormData] = useState({
-        patient: '',
+        patient: user.username,
         practitioner: serviceData.practitioner || '',
         service: serviceData.name || '',
-        date: "",
-        time: "",
+        dateCreated: date,
+        appointmentDate: '',
+        time: time,
         status: 'pending'
     })
 
@@ -69,7 +83,8 @@ const CreateAppointmentForm = ({defaulPractitioner, defaultService}) => {
         console.log("data submitted", formData);
 
         setFormData({
-            date: "",
+            dateCreated: date,
+            appointmentDate: "",
             time: ""
         })
     }
@@ -112,15 +127,26 @@ const CreateAppointmentForm = ({defaulPractitioner, defaultService}) => {
                         />
                     </Form.Group>
 
-                    <Form.Group controlId="date">
-                        <Form.Label>Date</Form.Label>
+                    <Form.Group controlId="dateCreated">
+                        <Form.Label>Date Created</Form.Label>
                         <Form.Control
                             type="date"
-                            name="date"
-                            value={formData.date}
+                            name="dateCreated"
+                            value={formData.dateCreated}
                             onChange={handleInputChange}
                         />
                     </Form.Group>
+
+                    <Form.Group controlId="appointmentDate">
+                        <Form.Label>Appointment Date</Form.Label>
+                        <Form.Control
+                            type="date"
+                            name="appointmentDate"
+                            value={formData.appointmentDate}
+                            onChange={handleInputChange}
+                        />
+                    </Form.Group>
+
 
                     <Form.Group controlId="time">
                         <Form.Label>Time</Form.Label>
@@ -129,10 +155,8 @@ const CreateAppointmentForm = ({defaulPractitioner, defaultService}) => {
                             name="time"
                             value={formData.time}
                             onChange={handleInputChange}
+
                         />
-
-
-
                     </Form.Group>
 
                     <Button variant="primary" type="submit" style={{marginTop: '15px'}} >

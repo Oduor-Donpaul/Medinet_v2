@@ -8,6 +8,8 @@ const Login = () => {
    
     let { loginUser } = useContext(AuthContext);
 
+    console.log(loginUser)
+
     return (
         <div>
 

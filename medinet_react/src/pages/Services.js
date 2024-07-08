@@ -4,23 +4,58 @@ import { Card, Button, Col, Row } from "react-bootstrap";
 import SearchBar from "../components/SearchBar";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "../context/AuthContext"
+
 
 const Services = () => {
 
 
     const [services, setServices] = useState([]);
+    const [token, setToken] = useState(''); 
     const [filteredData, setfilteredData] = useState([]);
+    const { authTokens } = useAuth();
+
+   /* useEffect(() => {
+        const fetchToken = async () => {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/token/', { //fetch token
+                    method: 'POST',
+                    headers : {
+                        'Content-Type': 'application/json',
+                    },
+                    body : JSON.stringify({
+                        username:'donpaul',
+                        password: '3ibal0ng1',
+                    }),
+                });
+
+                if (!response.ok) { //check if token fetched successfully
+                    throw new Error('Failed to fetch Token')
+                }
+
+                const data = await response.json(); //update access token
+                setToken(data.access);
+                } catch (error) {
+                    console.error('Error fetching token', error)
+                }
+            };
+            fetchToken ();
+        }, []);
+        */
 
     useEffect(() => {
         const fetchData = async () => {
+
+            if (!authTokens) return;
+
             try {
-                const response = await fetch('http://127.0.0.1:8000/services', {
+                const response = await fetch('http://127.0.0.1:8000/api/services', {
                     method: 'GET',
-                    mode: 'no-cors', // Ensure CORS mode is set to 'cors'
+                    mode: 'cors', // Ensure CORS mode is set to 'cors'
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json', // Change Accept header to 'application/json'
-                        // Add any other headers if needed
+                        'Authorization': `Bearer ${authTokens.access}`,
                     }
                 });
     
@@ -30,15 +65,15 @@ const Services = () => {
     
                 const data = await response.json();
                 setServices(data);
-                console.log("services", services)
-                console.log("data:", data)
+                console.log("services:", services)
+                //console.log("data:", data)
             } catch (error) {
                 console.log('Error fetching data:', error);
             }
         };
     
         fetchData();
-    }, []);
+    }, [token]);
 
     const UpdateResults = (results) => {
         setfilteredData(results);

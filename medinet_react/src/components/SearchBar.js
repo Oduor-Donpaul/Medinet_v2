@@ -21,7 +21,7 @@ const SearchBar = ({ data, setSearchResults, details }) => {
         /*((item.speciality.toLowerCase().includes(query.toLowerCase()))*/)
         setSearchResults(filteredResults)
 
-        },[data]);
+        },[query]);
 
         console.log("query:", query)
 

@@ -26,7 +26,7 @@ function App() {
             <Route path='/my-account' element={ <MyAccount />} />
             <Route path='/practitioners/:id' element={<DoctorDetails /> } />
             <Route path='/services/:id' element={<ServiceDetails />} />
-            <Route path='/services/:bookingId/book' element={<CreateAppointment />} />
+            <Route path='/services/:bookingId/book' element={<PrivateRoute><CreateAppointment /></PrivateRoute>} />
             <Route path='update-details' element={<UpdateDetails /> } />
             <Route path='/practitioner/:bookingId/book' element={<CreateAppointment />} />
             <Route path='/services' element={< Services />} />

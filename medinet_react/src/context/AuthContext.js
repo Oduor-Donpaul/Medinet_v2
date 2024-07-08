@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useContext } from "react";
 import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from "react-router-dom";
 
@@ -6,6 +6,10 @@ import { useNavigate } from "react-router-dom";
 const AuthContext = createContext();
 
 export default AuthContext;
+
+export const useAuth = () => {
+    return useContext(AuthContext);
+}
 
 export const AuthProvider = ({children}) => {
     let [user, setUser] = useState(null);
