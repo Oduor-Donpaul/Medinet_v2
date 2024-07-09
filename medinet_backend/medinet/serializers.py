@@ -21,7 +21,7 @@ class PatientSerializer(serializers.ModelSerializer):
 class AppointmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appointment
-        fields = ['status', 'patient', 'practitioner', 'service', 'time', 'date']
+        fields = '__all__'
 
 class HospitalSerializer(serializers.ModelSerializer):
     class Meta:
