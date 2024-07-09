@@ -74,7 +74,16 @@ const CreateAppointmentForm = ({defaulPractitioner, defaultService}) => {
         console.log("form data2", formData);
 
         try {
-            const response = await axios.post('http://localhost:8000/api/appointments/', formData);
+            const response = await axios.post(
+                    'http://localhost:8000/api/appointments/',
+                    formData,
+                    {
+                        headers: {
+                            'Content-Type': "application/json",
+                            'Authorization': `Bearer ${authTokens.access}`
+                        }
+                    }
+            );
             console.log("Appointment created:", response.data);
         } catch (error) {
             console.error('Error creating appointment:', error)
