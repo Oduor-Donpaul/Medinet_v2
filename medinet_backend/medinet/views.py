@@ -30,8 +30,7 @@ class MyTokenObtainPairView(TokenObtainPairView):
 @api_view(['GET','POST'])
 def appointments_view(request):
     if request.method == 'GET':
-        user = request.user
-        print(user)
+
         queryset = Appointment.objects.all()
         ##appointment = get_object_or_404(queryset)
         serializer = AppointmentSerializer(queryset, many=True)

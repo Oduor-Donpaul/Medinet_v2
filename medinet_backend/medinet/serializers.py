@@ -3,6 +3,8 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
+from django.utils.dateparse import parse_time
+from datetime import datetime
 
 class PractitionerSerializer(serializers.ModelSerializer):
 
@@ -18,10 +20,55 @@ class PatientSerializer(serializers.ModelSerializer):
         model = Patient
         fields = '__all__'
 
+
+class ModifiedTimeField(serializers.TimeField):
+    def to_internal_value(self, value):
+        if isinstance(value, str):
+            try:
+                print(f"input time value: {value}")
+                # Attempt to parse time from provided "hh:mm am/pm" format
+                parsed_time = datetime.strptime(value, '%I:%M %p').time()
+                print(f"parsed time: {parsed_time}")
+                return parsed_time
+            except :
+                raise serializers.ValidationError("Time must be in the format 'hh:mm am/pm")
+        return super().to_internal_value(value)
+
 class AppointmentSerializer(serializers.ModelSerializer):
+
+    patient = serializers.CharField() #expecxt a username
+    practitioner = serializers.CharField() # expect a username instread of id
+    time = ModifiedTimeField()
+
     class Meta:
         model = Appointment
         fields = '__all__'
+
+    def create(self, validated_data):
+        #Retrieve patient by username
+        patient_username = validated_data.pop('patient')
+
+        try:
+            patient = User.objects.get(username=patient_username)
+        except User.DoesNotExist:
+            raise serializers.ValidationError({"patient": "Patient not found"})
+
+        # Retrieve practitioner by username
+        practitioner_name = validated_data.pop('practitioner')
+
+        try:
+            practitioner = Practitioner.objects.get(user__username=practitioner_name)
+        except Practitioner.DoesNotExist:
+            raise serializers.ValidationError({"practitioner": "Practitioner not found"})
+
+        print(f"validated time before creation: {validated_data}")
+
+        appointment = Appointment.objects.create(
+            patient=patient,
+            practitioner=practitioner,
+            **validated_data
+            )
+        return appointment
 
 class HospitalSerializer(serializers.ModelSerializer):
     class Meta:

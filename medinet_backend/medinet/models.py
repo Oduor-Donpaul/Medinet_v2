@@ -63,14 +63,14 @@ class Appointment(models.Model):
     practitioner = models.ForeignKey(Practitioner, on_delete=models.CASCADE)
     ##patient_name = models.CharField(max_length=100)
     ##practitioner_name = models.CharField(max_length=100)
-    service = models.ForeignKey(Services, on_delete=models.CASCADE, related_name='appointments')
-    date_created = models.DateField(auto_now_add=True)
+    service = models.CharField(max_length=20)
+    date_created = models.DateTimeField(auto_now_add=True)
     appointment_date = models.DateField()
-    time = models.DateTimeField()
+    time = models.TimeField()
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
 
     def __str__(self):
-        return f"{self.patient} - {self.practitioner} - {self.service} on {appointment_date} at {time}"
+        return f"{self.patient} - {self.practitioner} - {self.service} on {self.appointment_date} at {self.time}"
 
 class Hospital(AbstractTimestampedModel):
     name = models.CharField(max_length=100)
