@@ -6,8 +6,11 @@ The app should also be capable assesing health risks of petients. however, due t
 **FEATURES**
 
 **User Authentication:** Register, login, logout, manage user accounts
+
 **Services and Facility listing:** Create, View, update and delete listings
+
 **Appointment Scheduling:** Create and manage appointments
+
 **Admin interface:** Manage users, properties, appointments through admin panel
 
 **Requirements**
