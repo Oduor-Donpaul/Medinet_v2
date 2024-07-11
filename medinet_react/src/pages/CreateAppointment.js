@@ -57,10 +57,8 @@ const CreateAppointmentForm = ({defaulPractitioner, defaultService}) => {
         patient: user.username,
         practitioner: serviceData.practitioner || '',
         service: serviceData.name || '',
-        dateCreated: date,
-        appointmentDate: '',
-        time: time,
-        status: 'pending'
+        appointment_date: '',
+        time: time
     })
 
     const handleInputChange = (e) => {
@@ -70,6 +68,8 @@ const CreateAppointmentForm = ({defaulPractitioner, defaultService}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const updateFormData = {...formData, time: formData.time.toLowerCase()};
 
         console.log("form data2", formData);
 
@@ -92,8 +92,8 @@ const CreateAppointmentForm = ({defaulPractitioner, defaultService}) => {
         console.log("data submitted", formData);
 
         setFormData({
-            dateCreated: date,
-            appointmentDate: "",
+            ...updateFormData,
+            appointment_date: "",
             time: ""
         })
     }
@@ -136,22 +136,12 @@ const CreateAppointmentForm = ({defaulPractitioner, defaultService}) => {
                         />
                     </Form.Group>
 
-                    <Form.Group controlId="dateCreated">
-                        <Form.Label>Date Created</Form.Label>
-                        <Form.Control
-                            type="date"
-                            name="dateCreated"
-                            value={formData.dateCreated}
-                            onChange={handleInputChange}
-                        />
-                    </Form.Group>
-
-                    <Form.Group controlId="appointmentDate">
+                    <Form.Group controlId="appointment_date">
                         <Form.Label>Appointment Date</Form.Label>
                         <Form.Control
                             type="date"
-                            name="appointmentDate"
-                            value={formData.appointmentDate}
+                            name="appointment_date"
+                            value={formData.appointment_date}
                             onChange={handleInputChange}
                         />
                     </Form.Group>

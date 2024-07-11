@@ -24,21 +24,31 @@ class PatientSerializer(serializers.ModelSerializer):
 class ModifiedTimeField(serializers.TimeField):
     def to_internal_value(self, value):
         if isinstance(value, str):
+            print(f"Received time value: {value}")
             try:
-                print(f"input time value: {value}")
                 # Attempt to parse time from provided "hh:mm am/pm" format
-                parsed_time = datetime.strptime(value, '%I:%M %p').time()
-                print(f"parsed time: {parsed_time}")
+                parsed_time = datetime.strptime(value, "%I:%M %p").time()
+                print(f"Parsed time (12-hour format): {parsed_time}")
                 return parsed_time
-            except :
-                raise serializers.ValidationError("Time must be in the format 'hh:mm am/pm")
+            except ValueError:
+                print(f"Failed to parse '{value}' as 12-hour time")
+                try:
+                    # Attempt to parse time from provided "HH:mm" format
+                    parsed_time = datetime.strptime(value, "%H:%M").time()
+                    print(f"Parsed time (24-hour format): {parsed_time}")
+                    return parsed_time
+                except ValueError:
+                    print(f"Failed to parse '{value}' as 24-hour time")
+                    raise serializers.ValidationError("Time must be in the format 'hh:mm am/pm' or 'HH:mm'.")
         return super().to_internal_value(value)
 
 class AppointmentSerializer(serializers.ModelSerializer):
 
     patient = serializers.CharField() #expecxt a username
     practitioner = serializers.CharField() # expect a username instread of id
-    time = ModifiedTimeField()
+    #time = ModifiedTimeField()
+    appointment_date = serializers.DateField(format="%Y-%m-%d", input_formats=["%Y-%m-%d"])
+    time = ModifiedTimeField(format="%H:%M:%S")
 
     class Meta:
         model = Appointment
