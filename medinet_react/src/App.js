@@ -21,15 +21,16 @@ function App() {
         <div className='App'>
           <MyNavbar />
           <Routes>
-            <Route path='/' element={<PrivateRoute><HomePage /></PrivateRoute>} />
+            <Route path='/' element={<HomePage />} />
+            <Route path='/:type' element={<PrivateRoute><Services /></PrivateRoute>} />
             <Route path='/login' element={ <Login />} />
             <Route path='/my-account' element={ <MyAccount />} />
-            <Route path='/practitioners/:id' element={<DoctorDetails /> } />
-            <Route path='/services/:id' element={<ServiceDetails />} />
-            <Route path='/services/:bookingId/book' element={<PrivateRoute><CreateAppointment /></PrivateRoute>} />
+            <Route path='/:type/:id' element={<DoctorDetails /> } />
+            <Route path='/:type/:id' element={<ServiceDetails />} />
+            <Route path='/:type/:bookingId/book' element={<PrivateRoute><CreateAppointment /></PrivateRoute>} />
             <Route path='update-details' element={<UpdateDetails /> } />
-            <Route path='/practitioner/:bookingId/book' element={<CreateAppointment />} />
-            <Route path='/services' element={< Services />} />
+            <Route path='/practitioner/:bookingId/book' element={<PrivateRoute><CreateAppointment /></PrivateRoute>} />
+            <Route path='/:type' element={< Services />} />
             <Route path='/about' element={< About />} />
           </Routes>
         </div>

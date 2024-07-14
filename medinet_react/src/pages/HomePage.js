@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Button, Row, Col } from 'react-bootstrap';
+import { Container, Card, Button, Row, Col } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import practitioners from '../sample_data/practitioners.json';
@@ -16,43 +16,27 @@ const HomePage = () => {
     const searchContent = "Search for Doctors";
 
     return (
-        <div>
-            <div>
-                {/* text input for searching doctors*/}
-                <SearchBar data={practitioners} setSearchResults={setSearchResults} details={searchContent}/>
-            </div>
-            <Row className="m-4 ">
-                {filteredData.map((practitioner) => (
-                    <Col key={practitioner.id} xs={12} md={6} lg={3}>
-                        <Card style={{ width: '100%', marginTop: '15px' }} >
-                            <Link to={`/practitioners/${practitioner.id}`} style={{textDecoration: 'none'}} >
-                                <Card.Img variant="top" src={practitioner.image} alt="Image" style={{ height: "200px", width: "215px" }} />
-                                <Card.Body>
-                                    <Card.Title><b>{practitioner.name}</b></Card.Title>
-                                    <Card.Text  >
-                                        <p>{practitioner.speciality}</p>
-                                        <p>Experience: {practitioner.experience}</p>
-                                        <div >
-                                            <div>
-                                                <small>Avilability: {practitioner.availability}</small>
-                                            </div>
-                                            <Button className="ms-right" ><small>Book Now</small></Button>
-                                        </div>
-                                    </Card.Text>
-                                </Card.Body>
-                            </Link>
-                        </Card>
-                    </Col>
-                ))}
-            </Row>
-            <div>
+        <>
+            <Container className="text-center mt-5">
+              <Row>
+                <Col>
+                  <h1>Welcome to Medinet</h1>
+                  <p>Your go-to platform for booking medical appointments with ease.</p>
+                  <Link to="/practitioners">
+                    <Button variant="primary" className="m-2">Find Practitioners</Button>
+                  </Link>
+                  <Link to="/services">
+                    <Button variant="secondary" className="m-2">View Services</Button>
+                  </Link>
+                  <Link to="/about">
+                    <Button variant="info" className="m-2">About Us</Button>
+                  </Link>
+                </Col>
+              </Row>
+            </Container>
+        </>
+          );
 
-            </div>
-
-
-        </div>
-
-    )
-}
+        }
 
 export default HomePage;

@@ -9,10 +9,11 @@ from rest_framework.response import Response
 from .serializers import *
 from .models import *
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from django.contrib.auth import authenticate
 from django.shortcuts import get_object_or_404
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.permissions import AllowAny
 
 
 
@@ -46,6 +47,7 @@ def appointments_view(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'POST'])
+@permission_classes([AllowAny])
 def practitioner_view(request):
     if request.method == 'POST':
         serializer_data = PractitionerSerializer(data = request.data)
@@ -224,6 +226,7 @@ def service_detail_view(request, pk):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 @api_view(['GET', 'POST'])
+@permission_classes([AllowAny])
 def services_view(request):
     if request.method == 'GET':
         queryset = Services.objects.all()

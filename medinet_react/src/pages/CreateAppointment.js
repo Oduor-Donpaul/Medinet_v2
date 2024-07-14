@@ -6,14 +6,14 @@ import { useAuth } from "../context/AuthContext";
 
 const CreateAppointmentForm = ({defaulPractitioner, defaultService}) => {
     const [ serviceData, setServiceData ] = useState({});
-    let { bookingId } = useParams();
+    let { bookingId, type } = useParams();
     const { authTokens, user } = useAuth();
 
     console.log("booking Id:", bookingId);
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:8000/api/service/${bookingId}`, {
+                const response = await fetch(`http://localhost:8000/api/${type}/${bookingId}`, {
                     method: 'GET',
                     mode: 'cors',
                     headers: {
@@ -31,7 +31,7 @@ const CreateAppointmentForm = ({defaulPractitioner, defaultService}) => {
 
                 setFormData(prevFormData => ({
                     ...prevFormData,
-                    practitioner: data.Practitioner.username ,
+                    practitioner: data.practitioner ,
                     service: data.name || ''
                 }))
             } catch (error){
@@ -53,13 +53,24 @@ const CreateAppointmentForm = ({defaulPractitioner, defaultService}) => {
 
     const { date, time } = currentDateandTime();
 
-    const [formData, setFormData] = useState({
-        patient: user.username,
-        practitioner: serviceData.practitioner || '',
-        service: serviceData.name || '',
-        appointment_date: '',
-        time: time
-    })
+    if (!serviceData) {
+
+        return (
+
+            <div>
+                <p>Loading ...</p>
+            </div>
+            )
+    }
+            const [formData, setFormData] = useState({
+            patient: user.username,
+            practitioner: serviceData.practitioner || serviceData.Practitioner.username || '',
+            service: serviceData.name || '',
+            appointment_date: '',
+            time: time
+        })
+
+
 
     const handleInputChange = (e) => {
         const {name, value} = e.target;

@@ -1,13 +1,51 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
+import { useEffect, useState } from 'react';
 import { Link, useParams } from "react-router-dom";
-import services from '../sample_data/services.json';
+//import services from '../sample_data/services.json';
 
 
 const ServiceDetails = () => {
     let { id } = useParams();
+    let { type } = useParams();
+    const [ services, setServices] = useState([]);
 
-    const view = services.filter((service) => (
+
+
+        useEffect(() => {
+        const fetchData = async () => {
+
+            //if (!authTokens) return;
+
+            try {
+                const response = await fetch(`http://127.0.0.1:8000/api/${type}` , {
+                    method: 'GET',
+                    mode: 'cors', // Ensure CORS mode is set to 'cors'
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json', // Change Accept header to 'application/json'
+                       // 'Authorization': `Bearer ${authTokens.access}`,
+                    }
+                });
+    
+                if (!response.ok) {
+                    console.log("type", type)
+                    throw new Error('Network response was not ok');
+                }
+    
+                const data = await response.json();
+                setServices(data);
+                console.log("services:", services)
+                //console.log("data:", data)
+            } catch (error) {
+                console.log('Error fetching data:', error);
+            }
+        };
+    
+        fetchData();
+    }, [id, type]);
+
+        const view = services.filter((service) => (
         service.id == id
     ))
 

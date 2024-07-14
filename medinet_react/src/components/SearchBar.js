@@ -1,8 +1,10 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useParams  } from 'react-router-dom'
+import { useState, useEffect} from "react";
 
 const SearchBar = ({ data, setSearchResults, details }) => {
     const [query, setQuery] = useState("");
+    const { url } = useParams();
 
     console.log("data:", data)
 
@@ -11,19 +13,28 @@ const SearchBar = ({ data, setSearchResults, details }) => {
 
         console.log("searchTem2;", query)
 
-        const filteredResults = data.filter((item) =>
-        (item.name.toLowerCase().includes(query.toLowerCase())) ||
-        (item.speciality && item.speciality.toLowerCase().includes(query.toLowerCase())) ||
-        (item.services && typeof item.services == 'string' &&
-        item.services.toLowerCase().includes(query.toLowerCase())) ||
-        (Array.isArray(item.services) && item.services.some(service => 
-        typeof service.name == 'string' && service.name.toLowerCase().includes(query.toLowerCase())) )
-        /*((item.speciality.toLowerCase().includes(query.toLowerCase()))*/)
-        setSearchResults(filteredResults)
+        if (data.length > 0){
 
+            const filteredResults = data.filter((item) =>
+            (item.username && item.username.toLowerCase().includes(query.toLowerCase())) ||
+            (item.name && item.name.toLowerCase().includes(query.toLowerCase())) ||
+            (item.speciality && item.speciality.toLowerCase().includes(query.toLowerCase())) ||
+            (item.services && typeof item.services == 'string' &&
+            item.services.toLowerCase().includes(query.toLowerCase())) ||
+            (Array.isArray(item.services) && item.services.some(service => 
+            typeof service.name == 'string' && service.name.toLowerCase().includes(query.toLowerCase())) )
+            /*((item.speciality.toLowerCase().includes(query.toLowerCase()))*/)
+            setSearchResults(filteredResults)
+
+            console.log("filteredResults in sb:", filteredResults)
+            console.log("url:", url)
+
+        }
+       
         },[query]);
 
         console.log("query:", query)
+
 
 
     return (
