@@ -1,18 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {Link} from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AuthContext from '../context/AuthContext';
 
 const MyNavbar = () => {
-    let [user, setUser] = useState(AuthContext);
-    let logoutUser = (e) => {
-        e.preventDefault()
-    }
+    let { user, logoutUser } = useContext(AuthContext);
+    
     return (
         <div>
             <div>
-                <Navbar bg="dark" variant="dark" expanded="bg" >
+                <Navbar bg="dark" variant="dark" expanded="lg" >
                     <Navbar.Brand as={Link} to="/">Brand</Navbar.Brand>
                     <Navbar.Toggle aria-controls = "basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
@@ -26,14 +24,18 @@ const MyNavbar = () => {
                 </Navbar>
             </div>
             <div>
-                <Link to="/">Home</Link>
-                <span> | </span>
-                {user ? (
-                    <p onClick={logoutUser} >Logout</p>
+                {!user ? (
+                     <Link to="/login" >Login</Link>
                 ) : (
-                    <Link to="/login" >Login</Link>
+
+                    <>
+                        <p style={{ display: 'inline' }}> Welcome {user.username} </p>
+                        <span> | </span>
+                        
+                        <p onClick={logoutUser} style={{ cursor: 'pointer', display: 'inline' }} >Logout</p>
+                    </>
+                   
                 ) }
-                {user && <p>Hello {user.username}</p>}
             </div>
         </div>
     )

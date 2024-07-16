@@ -8,6 +8,13 @@ const CreateAppointmentForm = ({defaulPractitioner, defaultService}) => {
     const [ serviceData, setServiceData ] = useState({});
     let { bookingId, type } = useParams();
     const { authTokens, user } = useAuth();
+    const [formData, setFormData] = useState({
+        patient: '',
+        practitioner: '',
+        service: '',
+        appointment_date: '',
+        time: ''
+    });
 
     console.log("booking Id:", bookingId);
     useEffect(() => {
@@ -31,7 +38,8 @@ const CreateAppointmentForm = ({defaulPractitioner, defaultService}) => {
 
                 setFormData(prevFormData => ({
                     ...prevFormData,
-                    practitioner: data.practitioner ,
+                    patient: user.username,
+                    practitioner: data.Practitioner?.username || data.username || '' ,
                     service: data.name || ''
                 }))
             } catch (error){
@@ -62,13 +70,13 @@ const CreateAppointmentForm = ({defaulPractitioner, defaultService}) => {
             </div>
             )
     }
-            const [formData, setFormData] = useState({
+            /*const [formData, setFormData] = useState({
             patient: user.username,
             practitioner: serviceData.practitioner || serviceData.Practitioner.username || '',
             service: serviceData.name || '',
             appointment_date: '',
             time: time
-        })
+        })*/
 
 
 
