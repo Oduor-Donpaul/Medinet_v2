@@ -61,6 +61,10 @@ const PractitionersList = ({practitioners, setResults, filteredData}) => {
     
     const searchContent = "Search for Doctors";
 
+    const getImagePath = (image) => {
+        return `${process.env.PUBLIC_URL}${image}`
+    }
+
     return (
 
         <>
@@ -78,17 +82,12 @@ const PractitionersList = ({practitioners, setResults, filteredData}) => {
                                     <Card style={{marginTop: '20px', width: '100%', height: '70vh'}}>
                                         <Link to={`/practitioners/${practitioner.id}`} style={{textDecoration: 'none'}} >
                                             <Card.Title><b>{practitioner.username}</b></Card.Title>
-                                            <Card.Img src={practitioner.image} alt="Image" style={{width: '215px', height: '200px'}}/>
+                                            <Card.Img src={getImagePath(practitioner.image)} alt="Image" style={{width: '215px', height: '200px'}}/>
                                             <Card.Body>
                                                 <div>
                                                     <p><b>$ 3000</b></p>
                                                     <p>{practitioner.description}</p>
-                                                    {/*typeof service.services == 'string' ? (
-                                                        <p><b>Service: </b>{service.services}</p>
-                                                    ) : (
-                                                        <b><p>Services: ...</p></b>
-                                                    )
-                                                    */}
+                                                    {console.log("Image",practitioner.image)}
                                                 </div>
                                                 <div>
                                                     <Button>Book Now</Button>
