@@ -56,7 +56,7 @@ const DocterDetails = () => {
                 {view.map((item) => (
                     <Card style={{alignItems: "center", marginTop: '15px'}}>
                         <h2><b>{item.username}</b></h2>
-                        <Card.Img src={item.image} alt="Image" style={{width: "300px", height: "300px"}} />
+                        <Card.Img src={`http://localhost:8000${item.image}`} alt="Image" style={{width: "300px", height: "300px"}} />
                         <Card.Body>
                             <p>Specialization: {item.speciality}</p>
                             <p>Availability: {item.availability}</p>

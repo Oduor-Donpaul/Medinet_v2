@@ -82,7 +82,7 @@ const PractitionersList = ({practitioners, setResults, filteredData}) => {
                                     <Card style={{marginTop: '20px', width: '100%', height: '70vh'}}>
                                         <Link to={`/practitioners/${practitioner.id}`} style={{textDecoration: 'none'}} >
                                             <Card.Title><b>{practitioner.username}</b></Card.Title>
-                                            <Card.Img src={getImagePath(practitioner.image)} alt="Image" style={{width: '215px', height: '200px'}}/>
+                                            <Card.Img src={`http://localhost:8000${practitioner.image}`} alt="Image" style={{width: '215px', height: '200px'}}/>
                                             <Card.Body>
                                                 <div>
                                                     <p><b>$ 3000</b></p>
